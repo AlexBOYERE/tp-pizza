@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
 
 const DataSchema = new mongoose.Schema({
-    name: String,
-    size: String,
-    price: Number,
-    quantity: Number,
-    date: Date
-});
+        name: String,
+        size: String,
+        price: Number,
+        quantity: Number,
+        date: Date
+    }, {collection: 'orders'}
+);
 
 const DataModel = mongoose.model('Data', DataSchema);
 
 async function getData() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/dbpizza', {
+        await mongoose.connect('mongodb://localhost:27017/pizza_orders_db', {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
