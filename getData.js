@@ -17,11 +17,11 @@ async function getData() {
             useUnifiedTopology: true
         });
 
-        const data = await DataModel.find();
+        const dbData = await DataModel.find();
 
         await mongoose.disconnect();
 
-        return data;
+        return dbData;
     } catch (error) {
         throw new Error('Erreur lors de la récupération des données : ' + error.message);
     }
