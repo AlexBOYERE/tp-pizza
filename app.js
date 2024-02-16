@@ -38,8 +38,8 @@ async function main() {
         // const question = questionsRequest.calculateTotalVeganOrders(allOrders);
         // const question = questionsRequest.calculateLargeOrders(allOrders);
         // const question = questionsRequest.findBestSellingRecipe(allOrders);
-        const question = questionsRequest.findBestSellingSize(allOrders);
-        // const question = questionsRequest.findHighestRevenueRecipe(allOrders);
+        // const question = questionsRequest.findBestSellingSize(allOrders);
+        const question = questionsRequest.findHighestRevenueRecipe(allOrders);
 
 
         console.log('Answer:', question);

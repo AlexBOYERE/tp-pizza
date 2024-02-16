@@ -10,10 +10,12 @@ confondus)?</p>
 <p>g. Quelle recette de pizza a rapporté le plus de revenus ?</p>
 
 Answers:
+(Potentiellement ma base de données est différente de la votre, donc les réponses peuvent être différentes, j'ai pu rajouter des datas et en supprimer d'autres)
+```sql
 1. 2540 €
 2. 155 commandes
 3. 20 pizzas "Vegan"
 4. 40 pizzas "large"
 5. Cheese
 6. medium
-7. 
+7. Pepperoni

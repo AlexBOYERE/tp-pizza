@@ -55,6 +55,39 @@ function findBestSellingSize(orders) {
     );
 }
 
+function findHighestRevenueRecipe(orders) {
+    // Brouillon : définir une variable pour stocker les revenus de chaque recette
+    const revenueByRecipe = {};
+
+    // Brouillon : boucler sur chaque commande pour incrémenter les revenus de chaque recette
+    orders.forEach((order) => {
+        const recipe = order.name;
+        const price = order.price;
+
+        // Brouillon : si la recette existe déjà, incrémenter le montant, sinon l'initialiser
+        if (revenueByRecipe[recipe]) {
+            revenueByRecipe[recipe] += price;
+        } else {
+            revenueByRecipe[recipe] = price;
+        }
+    });
+
+    // Brouillon : retourner la recette avec le plus de revenus
+    let highestRevenue = 0;
+    let highestRevenueRecipe = '';
+
+    // Brouillon : boucler sur les revenus de chaque recette pour trouver le plus élevé
+    for (const recipe in revenueByRecipe) {
+        if (revenueByRecipe[recipe] > highestRevenue) {
+            highestRevenue = revenueByRecipe[recipe];
+            highestRevenueRecipe = recipe;
+        }
+    }
+
+    // Erreur => vide
+    return highestRevenueRecipe;
+}
+
 module.exports = {
     getOrders,
     calculateTotalAmount,
@@ -63,4 +96,5 @@ module.exports = {
     calculateLargeOrders,
     findBestSellingRecipe,
     findBestSellingSize,
+    findHighestRevenueRecipe,
 };
