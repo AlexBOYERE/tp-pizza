@@ -46,7 +46,7 @@ async function generateMenuJSON() {
         const formattedDate = date.toISOString().replace(/:/g, '-').slice(0, 19);
 
         const jsonContent = JSON.stringify(menu, null, 2);
-        fs.writeFileSync('file_json/menu_' + formattedDate + '.json', jsonContent);
+        fs.writeFileSync('app/file_json/menu_' + formattedDate + '.json', jsonContent);
         console.log('Fichier menu.json généré');
     } catch (error) {
         console.error('Erreur :', error);

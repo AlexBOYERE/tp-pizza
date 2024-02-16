@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const OrderService = require('./orderService');
+const OrderService = require('./OrderService');
 const questionsRequest = require('./questionsRequest');
 const aggregateRequest = require('./aggregateRequest');
 const generateMenuJSON = require('./generateMenuJSON');

@@ -1,4 +1,4 @@
-const orderService = require('./orderService');
+const orderService = require('./OrderService');
 
 async function getOrders() {
     return await orderService.getOrders();
