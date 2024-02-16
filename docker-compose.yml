@@ -4,8 +4,6 @@ services:
   mongodb:
     image: mongo
     restart: always
-    volumes:
-      - mongodb_data:/data/db
     ports:
       - 27017:27017
     networks:
@@ -22,9 +20,8 @@ services:
       - mongodb
     networks:
       - db_network
-
-volumes:
-  mongodb_data:
+    volumes:
+      - ./app:/usr/src/app
 
 networks:
   db_network:

@@ -1,9 +1,13 @@
 FROM node:14
 
-COPY package.json .
+WORKDIR /usr/src/app
+
+COPY package*.json ./
 
 RUN npm install
 
-COPY .. .
+COPY app ./app
 
-CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD [ "node", "app.js" ]
