@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+const questionsRequest = require('./questionsRequest');
 
 class OrderService {
     constructor(database) {
@@ -14,46 +15,6 @@ class OrderService {
     }
 }
 
-function caculateTotalAmount(orders) {
-    return orders.reduce((total, order) => total + (order.price * order.quantity), 0);
-}
-
-function calculateTotalPizzasOrdered(orders) {
-    return orders.reduce((total, order) => total + order.quantity, 0);
-}
-
-function calculateTotalVeganOrders(orders) {
-    return orders.reduce((total, order) => {
-        if (order.name === 'Vegan') {
-            return total + order.quantity;
-        }
-        return total;
-    }, 0);
-}
-
-function calculateLargeOrders(orders) {
-    return orders.reduce((total, order) => {
-        if (order.size === 'large') {
-            return total + order.quantity;
-        }
-        return total;
-    }, 0);
-}
-
-function findBestSellingRecipe(orders) {
-    // Brouillon : définir une variable pour stocker le nombre de ventes de chaque recette
-    const recipeSales = {};
-    // Brouillon : boucler sur chaque commande pour incrémenter le nombre de ventes de chaque recette
-    orders.forEach(order => {
-        const recipe = order.name;
-        recipeSales[recipe] = (recipeSales[recipe] || 0) + order.quantity;
-    });
-    // Brouillon : retourner la recette avec le plus de ventes
-    return Object.keys(recipeSales).reduce((a, b) =>
-        recipeSales[a] > recipeSales[b] ? a : b
-    );
-}
-
 async function main() {
     const client = new MongoClient('mongodb://localhost:27017/', {
         useNewUrlParser: true,
@@ -67,18 +28,19 @@ async function main() {
         const orderService = new OrderService(client.db('pizzas_orders_db'));
 
         const allOrders = await orderService.getOrders();
-        console.log('All orders:', allOrders);
+        // console.log('All orders:', allOrders);
 
         const largeOrders = await orderService.getOrdersBySize('Large');
-        console.log('Orders for Large size:', largeOrders);
+        // console.log('Orders for Large size:', largeOrders);
 
-        // const question = caculateTotalAmount(allOrders);
-        // const question = calculateTotalPizzasOrdered(allOrders);
-        // const question = calculateTotalVeganOrders(allOrders);
-        // const question = calculateLargeOrders(allOrders);
-        const question = findBestSellingRecipe(allOrders);
-        // const question = findBestSellingSize(allOrders);
-        // const question = findHighestRevenueRecipe(allOrders);
+        // const question = questionsRequest.caculateTotalAmount(allOrders);
+        // const question = questionsRequest.calculateTotalPizzasOrdered(allOrders);
+        // const question = questionsRequest.calculateTotalVeganOrders(allOrders);
+        // const question = questionsRequest.calculateLargeOrders(allOrders);
+        // const question = questionsRequest.findBestSellingRecipe(allOrders);
+        const question = questionsRequest.findBestSellingSize(allOrders);
+        // const question = questionsRequest.findHighestRevenueRecipe(allOrders);
+
 
         console.log('Answer:', question);
 

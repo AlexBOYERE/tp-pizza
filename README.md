@@ -15,4 +15,5 @@ Answers:
 3. 20 pizzas "Vegan"
 4. 40 pizzas "large"
 5. Cheese
-6. 
+6. medium
+7. 
