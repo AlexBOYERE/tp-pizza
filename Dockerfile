@@ -1,5 +1,5 @@
 # Erreur : n'arrive aps à trouver le module mongodb
-FROM node:14
+FROM node:latest
 
 WORKDIR /usr/src/app
 
