@@ -8,6 +8,8 @@ class OrderService {
     }
 
     async getOrdersBySize(size) {
-        return await this.ordersCollection.find({size}).toArray();
+        return await this.ordersCollection.find({ size }).toArray();
     }
 }
+
+module.exports = OrderService;

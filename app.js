@@ -1,37 +1,23 @@
-const { MongoClient } = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
+const OrderService = require('./orderService');
 const questionsRequest = require('./questionsRequest');
-
-class OrderService {
-    constructor(database) {
-        this.ordersCollection = database.collection('orders');
-    }
-
-    async getOrders() {
-        return await this.ordersCollection.find().toArray();
-    }
-
-    async getOrdersBySize(size) {
-        return await this.ordersCollection.find({size}).toArray();
-    }
-}
+const aggregateRequest = require('./aggregateRequest');
 
 async function main() {
-    const client = new MongoClient('mongodb://localhost:27017/', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-
     try {
-        await client.connect();
-        console.log('Connected to MongoDB');
+        const url = 'mongodb://localhost:27017';
+        const dbName = 'pizzas_orders_db';
 
-        const orderService = new OrderService(client.db('pizzas_orders_db'));
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        console.log('Connected to database:', dbName)
+
+        const orderService = new OrderService(db);
 
         const allOrders = await orderService.getOrders();
-        // console.log('All orders:', allOrders);
 
-        const largeOrders = await orderService.getOrdersBySize('Large');
-        // console.log('Orders for Large size:', largeOrders);
+        // const largeOrders = await orderService.getOrdersBySize('large');
+        // console.log('Large orders:', largeOrders);
 
         // const question = questionsRequest.caculateTotalAmount(allOrders);
         // const question = questionsRequest.calculateTotalPizzasOrdered(allOrders);
@@ -39,17 +25,18 @@ async function main() {
         // const question = questionsRequest.calculateLargeOrders(allOrders);
         // const question = questionsRequest.findBestSellingRecipe(allOrders);
         // const question = questionsRequest.findBestSellingSize(allOrders);
-        const question = questionsRequest.findHighestRevenueRecipe(allOrders);
+        // const question = questionsRequest.findHighestRevenueRecipe(allOrders);
+        // console.log('Answer:', question);
 
+        // const aggregate = await aggregateRequest.getQuantityByPizzaSize(db);
+        // const aggregate = await aggregateRequest.getAveragePizzaQuantity(db);
+        // console.log('Aggregate:', aggregate);
 
-        console.log('Answer:', question);
-
+        client.close();
+        console.log('Connection to database closed')
     } catch (error) {
         console.error('Error:', error);
-    } finally {
-        await client.close();
-        console.log('Disconnected from MongoDB');
     }
 }
 
-main().catch(console.error);
+main();
