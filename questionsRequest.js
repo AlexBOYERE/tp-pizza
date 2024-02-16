@@ -84,7 +84,6 @@ function findHighestRevenueRecipe(orders) {
         }
     }
 
-    // Erreur => vide
     return highestRevenueRecipe;
 }
 
