@@ -31,6 +31,15 @@ function calculateTotalVeganOrders(orders) {
     }, 0);
 }
 
+function calculateLargeOrders(orders) {
+    return orders.reduce((total, order) => {
+        if (order.size === 'large') {
+            return total + order.quantity;
+        }
+        return total;
+    }, 0);
+}
+
 async function main() {
     const client = new MongoClient('mongodb://localhost:27017/', {
         useNewUrlParser: true,
@@ -51,8 +60,8 @@ async function main() {
 
         // const question = caculateTotalAmount(allOrders);
         // const question = calculateTotalPizzasOrdered(allOrders);
-        const question = calculateTotalVeganOrders(allOrders);
-        // const question = filterLargeOrders(allOrders);
+        // const question = calculateTotalVeganOrders(allOrders);
+        const question = calculateLargeOrders(allOrders);
         // const question = findBestSellingRecipe(allOrders);
         // const question = findBestSellingSize(allOrders);
         // const question = findHighestRevenueRecipe(allOrders);
