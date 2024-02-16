@@ -42,7 +42,7 @@ async function main() {
             console.error('Erreur lors de la génération du menu JSON:', error);
         });
 
-        client.close();
+        await client.close();
         console.log('Connection to database closed')
     } catch (error) {
         console.error('Error:', error);

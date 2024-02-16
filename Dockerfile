@@ -1,12 +1,13 @@
+# Erreur : n'arrive aps à trouver le module mongodb
 FROM node:14
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY app ./app
+
+RUN npm install
 
 EXPOSE 3000
 

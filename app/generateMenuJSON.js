@@ -23,7 +23,7 @@ async function generateMenuJSON() {
         const menu = {};
 
         // Brouillon : Parcours des pizzas et des tailles pour récupérer les tarifs associés
-        console.log("Pizzzzzzzzzzzzzzzzzas:", pizzas);
+        console.log("Pizzas:", pizzas);
         for (const pizza of pizzas) {
             menu[pizza] = {};
             for (const size of sizes) {
