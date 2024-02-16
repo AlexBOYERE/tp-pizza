@@ -40,6 +40,20 @@ function calculateLargeOrders(orders) {
     }, 0);
 }
 
+function findBestSellingRecipe(orders) {
+    // Brouillon : définir une variable pour stocker le nombre de ventes de chaque recette
+    const recipeSales = {};
+    // Brouillon : boucler sur chaque commande pour incrémenter le nombre de ventes de chaque recette
+    orders.forEach(order => {
+        const recipe = order.name;
+        recipeSales[recipe] = (recipeSales[recipe] || 0) + order.quantity;
+    });
+    // Brouillon : retourner la recette avec le plus de ventes
+    return Object.keys(recipeSales).reduce((a, b) =>
+        recipeSales[a] > recipeSales[b] ? a : b
+    );
+}
+
 async function main() {
     const client = new MongoClient('mongodb://localhost:27017/', {
         useNewUrlParser: true,
@@ -61,8 +75,8 @@ async function main() {
         // const question = caculateTotalAmount(allOrders);
         // const question = calculateTotalPizzasOrdered(allOrders);
         // const question = calculateTotalVeganOrders(allOrders);
-        const question = calculateLargeOrders(allOrders);
-        // const question = findBestSellingRecipe(allOrders);
+        // const question = calculateLargeOrders(allOrders);
+        const question = findBestSellingRecipe(allOrders);
         // const question = findBestSellingSize(allOrders);
         // const question = findHighestRevenueRecipe(allOrders);
 
