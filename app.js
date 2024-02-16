@@ -19,6 +19,7 @@ async function main() {
         // const largeOrders = await orderService.getOrdersBySize('large');
         // console.log('Large orders:', largeOrders);
 
+        // TP3
         // const question = questionsRequest.caculateTotalAmount(allOrders);
         // const question = questionsRequest.calculateTotalPizzasOrdered(allOrders);
         // const question = questionsRequest.calculateTotalVeganOrders(allOrders);
@@ -28,6 +29,7 @@ async function main() {
         // const question = questionsRequest.findHighestRevenueRecipe(allOrders);
         // console.log('Answer:', question);
 
+        // TP4
         // const aggregate = await aggregateRequest.getQuantityByPizzaSize(db);
         // const aggregate = await aggregateRequest.getAveragePizzaQuantity(db);
         // console.log('Aggregate:', aggregate);
