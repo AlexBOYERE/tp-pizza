@@ -1,5 +1,5 @@
 <h1>BOYERE Alexandre</h1>
-<h2>Fin du temps : position TP 6</h2>
+<h2>Fin du temps : position TP 6.</h2>
 
 <h3>---------------</h3>
 
