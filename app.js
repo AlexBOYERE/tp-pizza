@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 const OrderService = require('./orderService');
 const questionsRequest = require('./questionsRequest');
 const aggregateRequest = require('./aggregateRequest');
+const generateMenuJSON = require('./generateMenuJSON');
 
 async function main() {
     try {
@@ -33,6 +34,13 @@ async function main() {
         // const aggregate = await aggregateRequest.getQuantityByPizzaSize(db);
         // const aggregate = await aggregateRequest.getAveragePizzaQuantity(db);
         // console.log('Aggregate:', aggregate);
+
+        // TP5
+        generateMenuJSON().then(() => {
+            console.log('Génération du menu JSON terminée');
+        }).catch((error) => {
+            console.error('Erreur lors de la génération du menu JSON:', error);
+        });
 
         client.close();
         console.log('Connection to database closed')
